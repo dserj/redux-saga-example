@@ -2,7 +2,7 @@
 // We'll use this function to block the Generator.
 import { delay } from 'redux-saga'
 
-import { put, takeEvery } from 'redux-saga/effects'
+import { put, takeEvery, all } from 'redux-saga/effects'
 
 export function* helloSaga() {
   console.log('Hello Sagas!')
@@ -21,4 +21,13 @@ export function* incrementAsync() {
 // to listen for dispatched INCREMENT_ASYNC actions and run incrementAsync each time.
 export function* watchIncrementAsync() {
   yield takeEvery('INCREMENT_ASYNC', incrementAsync)
+}
+
+// single entry point to start all Sagas at once
+// This Saga yields an array with the results of calling our two sagas, helloSaga and watchIncrementAsync
+export default function* rootSaga() {
+  yield all([
+    helloSaga(),
+    watchIncrementAsync()
+  ])
 }
