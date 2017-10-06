@@ -1,13 +1,24 @@
 import "babel-polyfill"
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
+
+// First we import our Saga from the ./sagas module
+import { helloSaga } from './sagas'
+
+// Then we create a middleware using the factory function
+const sagaMiddleware = createSagaMiddleware()
 
 import Counter from './Counter'
 import reducer from './reducers'
 
-const store = createStore(reducer)
+// Before running our helloSaga, we must connect our middleware to the Store using applyMiddleware
+const store = createStore(reducer, applyMiddleware(sagaMiddleware))
+
+// Then we can use the sagaMiddleware.run(helloSaga) to start our Saga.
+sagaMiddleware.run(helloSaga)
 
 const action = type => store.dispatch({type})
 
