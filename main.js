@@ -6,7 +6,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 // First we import our Saga from the ./sagas module
-import { helloSaga } from './sagas'
+import rootSaga from './sagas'
 
 // Then we create a middleware using the factory function
 const sagaMiddleware = createSagaMiddleware()
@@ -18,7 +18,7 @@ import reducer from './reducers'
 const store = createStore(reducer, applyMiddleware(sagaMiddleware))
 
 // Then we can use the sagaMiddleware.run(helloSaga) to start our Saga.
-sagaMiddleware.run(helloSaga)
+sagaMiddleware.run(rootSaga)
 
 const action = type => store.dispatch({type})
 
