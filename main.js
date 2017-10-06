@@ -28,6 +28,8 @@ function render() {
       value={store.getState()}
       onIncrement={() => action('INCREMENT')}
       onDecrement={() => action('DECREMENT')}
+
+      // Note that unlike in redux-thunk, our component dispatches a plain object action.
       onIncrementAsync={() => action('INCREMENT_ASYNC')} />,
     document.getElementById('root')
   )
