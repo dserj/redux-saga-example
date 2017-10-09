@@ -39,7 +39,9 @@ function* watchFetchData() {
   yield takeEvery('FETCH_ASYNC', fetchUser)
 }
 
-// like throttling, gets latest call
+// Unlike takeEvery, takeLatest allows only one fetchData task to run at any moment.
+// And it will be the latest started task.
+// If a previous task is still running when another fetchData task is started, the previous task will be automatically cancelled.
 function* watchFetchLatesData() {
   yield takeLatest('FETCH_LATEST_ASYNC', fetchUser)
 }
