@@ -3,7 +3,7 @@ import { all } from 'redux-saga/effects'
 import { helloSaga } from './helloSaga';
 import { watchIncrementAsync } from './incrementAsync';
 import { watchFetchData, watchFetchLatesData } from './fetchUser';
-import { watchAndLog } from './watchAndLog';
+import { watchAndLog, watchFirstNActions } from './watchAndLog';
 
 // single entry point to start all Sagas at once
 // This Saga yields an array with the results of calling our two sagas, helloSaga and watchIncrementAsync
@@ -15,6 +15,7 @@ export default function* rootSaga() {
     helloSaga(),
     watchIncrementAsync(),
     watchFetchData(),
-    watchFetchLatesData()
+    watchFetchLatesData(),
+    watchFirstNActions()
   ])
 }
