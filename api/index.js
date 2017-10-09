@@ -22,4 +22,4 @@ const Api = () =>
   }
 };
 
-module.exports = new Api();
+module.exports = Api();

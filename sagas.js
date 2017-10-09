@@ -27,7 +27,7 @@ export function* fetchUser() {
     console.log('in fetch user');
     const data = yield call(Api.fetchUser);
     console.log(data);
-    yield put({ type: 'FETCH_SUCCESS', data });
+    yield put({ type: 'FETCH_SUCCESS', data: data });
   }
   catch (e)
   {
