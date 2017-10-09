@@ -3,7 +3,7 @@
 import { delay } from 'redux-saga'
 import Api from './api';
 
-import { put, takeEvery, all, call } from 'redux-saga/effects'
+import { put, takeEvery, takeLatest, all, call } from 'redux-saga/effects'
 
 export function* helloSaga() {
   console.log('Hello Sagas!')
@@ -39,6 +39,11 @@ function* watchFetchData() {
   yield takeEvery('FETCH_ASYNC', fetchUser)
 }
 
+// like throttling, gets latest call
+function* watchFetchLatesData() {
+  yield takeLatest('FETCH_LATEST_ASYNC', fetchUser)
+}
+
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
 // Next, we created another Saga watchIncrementAsync.
 // We use takeEvery, a helper function provided by redux-saga,
@@ -55,6 +60,7 @@ export default function* rootSaga() {
   yield all([
     helloSaga(),
     watchIncrementAsync(),
-    watchFetchData()
+    watchFetchData(),
+    watchFetchLatesData()
   ])
 }

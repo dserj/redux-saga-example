@@ -29,8 +29,9 @@ function render() {
       onIncrement={() => action('INCREMENT')}
       onDecrement={() => action('DECREMENT')}
 
-      // my test saga
+      // my test sagas
       onFetch={() => action('FETCH_ASYNC')}
+      onFetchLatest={() => action('FETCH_LATEST_ASYNC')}
 
       // Note that unlike in redux-thunk, our component dispatches a plain object action.
       onIncrementAsync={() => action('INCREMENT_ASYNC')} />,

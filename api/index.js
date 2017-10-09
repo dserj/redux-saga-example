@@ -8,7 +8,7 @@ const Api = () =>
     return rand;
   }
 
-  function fetchUser(tm = randomInteger(1, 8) * 1000)
+  function fetchUser(tm = randomInteger(1, 4) * 1000)
   {
     return new Promise((res, rej) => {
       console.log(obj.PREFIX, 'in fetch promise', tm);
