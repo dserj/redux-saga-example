@@ -11,7 +11,8 @@ import Api from './api';
 // yield put({type: 'INCREMENT'})
 // So now, in order to test the logic inside incrementAsync,
 // we'll simply have to iterate over the returned Generator and check the values yielded by the generator
-import { incrementAsync, fetchUser } from './sagas'
+import { incrementAsync } from './sagas/incrementAsync';
+import { fetchUser } from './sagas/fetchUser'
 
 // This separation between Effect creation and Effect execution makes it possible to test our Generator in a surprisingly easy way
 test('incrementAsync Saga test', (assert) => {
