@@ -9,18 +9,18 @@ import ReactDOM from 'react-dom'
 import rootSaga from './sagas'
 
 // Then we create a middleware using the factory function
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 
 import Counter from './Counter'
 import reducer from './reducers'
 
 // Before running our helloSaga, we must connect our middleware to the Store using applyMiddleware
-const store = createStore(reducer, applyMiddleware(sagaMiddleware))
+const store = createStore(reducer, applyMiddleware(sagaMiddleware));
 
 // Then we can use the sagaMiddleware.run(helloSaga) to start our Saga.
-sagaMiddleware.run(rootSaga)
+sagaMiddleware.run(rootSaga);
 
-const action = type => store.dispatch({type})
+const action = type => store.dispatch({type});
 
 function render() {
   ReactDOM.render(
@@ -28,6 +28,9 @@ function render() {
       value={store.getState()}
       onIncrement={() => action('INCREMENT')}
       onDecrement={() => action('DECREMENT')}
+
+      // my test saga
+      onFetch={() => action('FETCH_ASYNC')}
 
       // Note that unlike in redux-thunk, our component dispatches a plain object action.
       onIncrementAsync={() => action('INCREMENT_ASYNC')} />,

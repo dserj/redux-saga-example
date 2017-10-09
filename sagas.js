@@ -1,6 +1,7 @@
 // We import delay, a utility function that returns a Promise that will resolve after a specified number of milliseconds.
 // We'll use this function to block the Generator.
 import { delay } from 'redux-saga'
+import Api from './api';
 
 import { put, takeEvery, all, call } from 'redux-saga/effects'
 
@@ -16,8 +17,26 @@ export function* incrementAsync() {
   // What happens is that the middleware examines the type of each yielded Effect then decides how to fulfill that Effect.
   // If the Effect type is a PUT then it will dispatch an action to the Store.
   // If the Effect is a CALL then it'll call the given function.
-  yield call(delay, 1000)
+  yield call(delay, 1000);
   yield put({ type: 'INCREMENT' })
+}
+
+export function* fetchUser() {
+  try
+  {
+    console.log('in fetch user');
+    const data = yield call(Api.fetchUser);
+    console.log(data);
+    yield put({ type: 'FETCH_SUCCESS', data });
+  }
+  catch (e)
+  {
+    yield put({ type: 'FETCH_FAILED', e });
+  }
+}
+
+function* watchFetchData() {
+  yield takeEvery('FETCH_ASYNC', fetchUser)
 }
 
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
@@ -35,6 +54,7 @@ export function* watchIncrementAsync() {
 export default function* rootSaga() {
   yield all([
     helloSaga(),
-    watchIncrementAsync()
+    watchIncrementAsync(),
+    watchFetchData()
   ])
 }
