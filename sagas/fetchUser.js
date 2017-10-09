@@ -4,9 +4,9 @@ import { put, takeEvery, takeLatest, call } from 'redux-saga/effects'
 export function* fetchUser() {
   try
   {
-    console.log('in fetch user');
+    //console.log('in fetch user');
     const data = yield call(Api.fetchUser);
-    console.log(data);
+    //console.log(data);
     yield put({ type: 'FETCH_SUCCESS', data: data });
   }
   catch (e)

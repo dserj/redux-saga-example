@@ -11,7 +11,7 @@ const Api = () =>
   function fetchUser(tm = randomInteger(1, 4) * 1000)
   {
     return new Promise((res, rej) => {
-      console.log(obj.PREFIX, 'in fetch promise', tm);
+      //console.log(obj.PREFIX, 'in fetch promise', tm);
       let num = randomInteger(1, 20);
       setTimeout(() => { res({ num }); }, tm);
     });

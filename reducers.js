@@ -7,7 +7,7 @@ export default function counter(state = 0, action) {
     case 'DECREMENT':
       return state - 1;
     case 'FETCH_SUCCESS':
-      console.log('FETCH_SUCCESS', action.data);
+      //console.log('FETCH_SUCCESS', action.data);
       return state + action.data.num;
     default:
       return state
