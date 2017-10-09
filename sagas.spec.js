@@ -58,3 +58,24 @@ test('fetchUser Saga test', (assert) => {
 
   assert.end();
 });
+
+test('fetchUser Saga error handling test', (assert) => {
+  const gen = fetchUser();
+
+  assert.deepEqual(
+    gen.next().value,
+    call(Api.fetchUser),
+    'fetchUser Saga must call Api.fetchUser'
+  );
+
+  // we can manipulate generator's value and mocking results
+  const error = {};
+
+  assert.deepEqual(
+    gen.throw(error).value,
+    put({ type: 'FETCH_FAILED', error: error }),
+    'fetchUser Saga must put FETCH_FAILED after fetch'
+  );
+
+  assert.end();
+});

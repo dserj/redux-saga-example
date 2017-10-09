@@ -31,7 +31,7 @@ export function* fetchUser() {
   }
   catch (e)
   {
-    yield put({ type: 'FETCH_FAILED', e });
+    yield put({ type: 'FETCH_FAILED', error: e });
   }
 }
 
