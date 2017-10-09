@@ -1,2 +1,4 @@
+https://redux-saga.js.org
+
 - sagas ==>> long live transactions on a single database
 - failure management pattern
