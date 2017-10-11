@@ -51,6 +51,8 @@ export function* watchFirstNActions() {
 // The loginFlow Saga more clearly conveys the expected action sequence.
 // It knows that the LOGIN action should always be followed by a LOGOUT action and that LOGOUT is always followed by a LOGIN
 // (a good UI should always enforce a consistent order of the actions, by hiding or disabling unexpected action).
+// see: https://redux-saga.js.org/docs/advanced/NonBlockingCalls.html
+// or loginFlow.js
 function* loginFlow() {
   while (true) {
     yield take('LOGIN')
